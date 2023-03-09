@@ -1,0 +1,19 @@
+cubes:
+  - name: DimScenario
+    sql: SELECT * FROM dbo."DimScenario"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [scenarioname]
+    dimensions:
+      - name: scenariokey
+        sql: "{CUBE}.\"ScenarioKey\""
+        type: number
+        primaryKey: true
+      - name: scenarioname
+        sql: "{CUBE}.\"ScenarioName\""
+        type: string

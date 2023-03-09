@@ -1,0 +1,100 @@
+cubes:
+  - name: DimCustomer
+    sql: SELECT * FROM dbo."DimCustomer"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [title, firstname, middlename, lastname, namestyle, birthdate, datefirstpurchase]
+      - name: totalchildren
+        sql: "{CUBE}.\"TotalChildren\""
+        type: sum
+      - name: numberchildrenathome
+        sql: "{CUBE}.\"NumberChildrenAtHome\""
+        type: sum
+      - name: numbercarsowned
+        sql: "{CUBE}.\"NumberCarsOwned\""
+        type: sum
+    dimensions:
+      - name: customerkey
+        sql: "{CUBE}.\"CustomerKey\""
+        type: number
+        primaryKey: true
+      - name: geographykey
+        sql: "{CUBE}.\"GeographyKey\""
+        type: number
+      - name: customeralternatekey
+        sql: "{CUBE}.\"CustomerAlternateKey\""
+        type: number
+      - name: title
+        sql: "{CUBE}.\"Title\""
+        type: string
+      - name: firstname
+        sql: "{CUBE}.\"FirstName\""
+        type: string
+      - name: middlename
+        sql: "{CUBE}.\"MiddleName\""
+        type: string
+      - name: lastname
+        sql: "{CUBE}.\"LastName\""
+        type: string
+      - name: namestyle
+        sql: "{CUBE}.\"NameStyle\""
+        type: string
+      - name: maritalstatus
+        sql: "{CUBE}.\"MaritalStatus\""
+        type: string
+      - name: suffix
+        sql: "{CUBE}.\"Suffix\""
+        type: string
+      - name: gender
+        sql: "{CUBE}.\"Gender\""
+        type: string
+      - name: emailaddress
+        sql: "{CUBE}.\"EmailAddress\""
+        type: string
+      - name: yearlyincome
+        sql: "{CUBE}.\"YearlyIncome\""
+        type: string
+      - name: englisheducation
+        sql: "{CUBE}.\"EnglishEducation\""
+        type: string
+      - name: spanisheducation
+        sql: "{CUBE}.\"SpanishEducation\""
+        type: string
+      - name: frencheducation
+        sql: "{CUBE}.\"FrenchEducation\""
+        type: string
+      - name: englishoccupation
+        sql: "{CUBE}.\"EnglishOccupation\""
+        type: string
+      - name: spanishoccupation
+        sql: "{CUBE}.\"SpanishOccupation\""
+        type: string
+      - name: frenchoccupation
+        sql: "{CUBE}.\"FrenchOccupation\""
+        type: string
+      - name: houseownerflag
+        sql: "{CUBE}.\"HouseOwnerFlag\""
+        type: string
+      - name: addressline1
+        sql: "{CUBE}.\"AddressLine1\""
+        type: string
+      - name: addressline2
+        sql: "{CUBE}.\"AddressLine2\""
+        type: string
+      - name: phone
+        sql: "{CUBE}.\"Phone\""
+        type: string
+      - name: commutedistance
+        sql: "{CUBE}.\"CommuteDistance\""
+        type: string
+      - name: birthdate
+        sql: "{CUBE}.\"BirthDate\""
+        type: time
+      - name: datefirstpurchase
+        sql: "{CUBE}.\"DateFirstPurchase\""
+        type: time

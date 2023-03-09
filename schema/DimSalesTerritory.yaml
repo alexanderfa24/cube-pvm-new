@@ -1,0 +1,28 @@
+cubes:
+  - name: DimSalesTerritory
+    sql: SELECT * FROM dbo."DimSalesTerritory"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [salesterritorycountry]
+    dimensions:
+      - name: salesterritorykey
+        sql: "{CUBE}.\"SalesTerritoryKey\""
+        type: number
+        primaryKey: true
+      - name: salesterritoryregion
+        sql: "{CUBE}.\"SalesTerritoryRegion\""
+        type: string
+      - name: salesterritorycountry
+        sql: "{CUBE}.\"SalesTerritoryCountry\""
+        type: string
+      - name: salesterritorygroup
+        sql: "{CUBE}.\"SalesTerritoryGroup\""
+        type: string
+      - name: salesterritoryimage
+        sql: "{CUBE}.\"SalesTerritoryImage\""
+        type: string

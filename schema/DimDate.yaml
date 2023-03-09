@@ -1,0 +1,43 @@
+cubes:
+  - name: DimDate
+    sql: SELECT * FROM dbo."DimDate"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [englishdaynameofweek, spanishdaynameofweek, frenchdaynameofweek, englishmonthname, spanishmonthname, frenchmonthname, fulldatealternatekey]
+    dimensions:
+      - name: datekey
+        sql: "{CUBE}.\"DateKey\""
+        type: number
+        primaryKey: true
+      - name: monthnumberofyear
+        sql: "{CUBE}.\"MonthNumberOfYear\""
+        type: number
+      - name: calendaryear
+        sql: "{CUBE}.\"CalendarYear\""
+        type: number
+      - name: englishdaynameofweek
+        sql: "{CUBE}.\"EnglishDayNameOfWeek\""
+        type: string
+      - name: spanishdaynameofweek
+        sql: "{CUBE}.\"SpanishDayNameOfWeek\""
+        type: string
+      - name: frenchdaynameofweek
+        sql: "{CUBE}.\"FrenchDayNameOfWeek\""
+        type: string
+      - name: englishmonthname
+        sql: "{CUBE}.\"EnglishMonthName\""
+        type: string
+      - name: spanishmonthname
+        sql: "{CUBE}.\"SpanishMonthName\""
+        type: string
+      - name: frenchmonthname
+        sql: "{CUBE}.\"FrenchMonthName\""
+        type: string
+      - name: fulldatealternatekey
+        sql: "{CUBE}.\"FullDateAlternateKey\""
+        type: time

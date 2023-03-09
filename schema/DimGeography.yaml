@@ -1,0 +1,43 @@
+cubes:
+  - name: DimGeography
+    sql: SELECT * FROM dbo."DimGeography"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [city, stateprovincename, countryregioncode, englishcountryregionname, spanishcountryregionname, frenchcountryregionname]
+    dimensions:
+      - name: geographykey
+        sql: "{CUBE}.\"GeographyKey\""
+        type: string
+        primaryKey: true
+      - name: city
+        sql: "{CUBE}.\"City\""
+        type: string
+      - name: stateprovincecode
+        sql: "{CUBE}.\"StateProvinceCode\""
+        type: string
+      - name: stateprovincename
+        sql: "{CUBE}.\"StateProvinceName\""
+        type: string
+      - name: countryregioncode
+        sql: "{CUBE}.\"CountryRegionCode\""
+        type: string
+      - name: englishcountryregionname
+        sql: "{CUBE}.\"EnglishCountryRegionName\""
+        type: string
+      - name: spanishcountryregionname
+        sql: "{CUBE}.\"SpanishCountryRegionName\""
+        type: string
+      - name: frenchcountryregionname
+        sql: "{CUBE}.\"FrenchCountryRegionName\""
+        type: string
+      - name: postalcode
+        sql: "{CUBE}.\"PostalCode\""
+        type: string
+      - name: ipaddresslocator
+        sql: "{CUBE}.\"IpAddressLocator\""
+        type: string

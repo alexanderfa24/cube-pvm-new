@@ -1,0 +1,112 @@
+cubes:
+  - name: DimProduct
+    sql: SELECT * FROM dbo."DimProduct"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins:
+      - name: FactInternetSales
+        sql: "{CUBE}.\"ProductKey\" = {FactInternetSales}.\"ProductKey\""
+        relationship: hasOne
+    measures:
+      - name: count
+        type: count
+        drillMembers: [englishproductname, spanishproductname, frenchproductname, modelname, thaidescription, startdate, enddate]
+    dimensions:
+      - name: productkey
+        sql: "{CUBE}.\"ProductKey\""
+        type: number
+        primaryKey: true
+      - name: productalternatekey
+        sql: "{CUBE}.\"ProductAlternateKey\""
+        type: string
+      - name: weightunitmeasurecode
+        sql: "{CUBE}.\"WeightUnitMeasureCode\""
+        type: string
+      - name: sizeunitmeasurecode
+        sql: "{CUBE}.\"SizeUnitMeasureCode\""
+        type: string
+      - name: englishproductname
+        sql: "{CUBE}.\"EnglishProductName\""
+        type: string
+      - name: spanishproductname
+        sql: "{CUBE}.\"SpanishProductName\""
+        type: string
+      - name: frenchproductname
+        sql: "{CUBE}.\"FrenchProductName\""
+        type: string
+      - name: standardcost
+        sql: "{CUBE}.\"StandardCost\""
+        type: string
+      - name: finishedgoodsflag
+        sql: "{CUBE}.\"FinishedGoodsFlag\""
+        type: string
+      - name: color
+        sql: "{CUBE}.\"Color\""
+        type: string
+      - name: listprice
+        sql: "{CUBE}.\"ListPrice\""
+        type: string
+      - name: size
+        sql: "{CUBE}.\"Size\""
+        type: string
+      - name: sizerange
+        sql: "{CUBE}.\"SizeRange\""
+        type: string
+      - name: weight
+        sql: "{CUBE}.\"Weight\""
+        type: string
+      - name: productline
+        sql: "{CUBE}.\"ProductLine\""
+        type: string
+      - name: dealerprice
+        sql: "{CUBE}.\"DealerPrice\""
+        type: string
+      - name: class
+        sql: "{CUBE}.\"Class\""
+        type: string
+      - name: style
+        sql: "{CUBE}.\"Style\""
+        type: string
+      - name: modelname
+        sql: "{CUBE}.\"ModelName\""
+        type: string
+      - name: largephoto
+        sql: "{CUBE}.\"LargePhoto\""
+        type: string
+      - name: englishdescription
+        sql: "{CUBE}.\"EnglishDescription\""
+        type: string
+      - name: frenchdescription
+        sql: "{CUBE}.\"FrenchDescription\""
+        type: string
+      - name: chinesedescription
+        sql: "{CUBE}.\"ChineseDescription\""
+        type: string
+      - name: arabicdescription
+        sql: "{CUBE}.\"ArabicDescription\""
+        type: string
+      - name: hebrewdescription
+        sql: "{CUBE}.\"HebrewDescription\""
+        type: string
+      - name: thaidescription
+        sql: "{CUBE}.\"ThaiDescription\""
+        type: string
+      - name: germandescription
+        sql: "{CUBE}.\"GermanDescription\""
+        type: string
+      - name: japanesedescription
+        sql: "{CUBE}.\"JapaneseDescription\""
+        type: string
+      - name: turkishdescription
+        sql: "{CUBE}.\"TurkishDescription\""
+        type: string
+      - name: status
+        sql: "{CUBE}.\"Status\""
+        type: string
+      - name: startdate
+        sql: "{CUBE}.\"StartDate\""
+        type: time
+      - name: enddate
+        sql: "{CUBE}.\"EndDate\""
+        type: time

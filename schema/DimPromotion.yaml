@@ -1,0 +1,58 @@
+cubes:
+  - name: DimPromotion
+    sql: SELECT * FROM dbo."DimPromotion"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: [englishpromotionname, spanishpromotionname, frenchpromotionname, startdate, enddate]
+      - name: minqty
+        sql: "{CUBE}.\"MinQty\""
+        type: sum
+      - name: maxqty
+        sql: "{CUBE}.\"MaxQty\""
+        type: sum
+    dimensions:
+      - name: promotionkey
+        sql: "{CUBE}.\"PromotionKey\""
+        type: number
+        primaryKey: true
+      - name: englishpromotionname
+        sql: "{CUBE}.\"EnglishPromotionName\""
+        type: string
+      - name: spanishpromotionname
+        sql: "{CUBE}.\"SpanishPromotionName\""
+        type: string
+      - name: frenchpromotionname
+        sql: "{CUBE}.\"FrenchPromotionName\""
+        type: string
+      - name: discountpct
+        sql: "{CUBE}.\"DiscountPct\""
+        type: string
+      - name: englishpromotiontype
+        sql: "{CUBE}.\"EnglishPromotionType\""
+        type: string
+      - name: spanishpromotiontype
+        sql: "{CUBE}.\"SpanishPromotionType\""
+        type: string
+      - name: frenchpromotiontype
+        sql: "{CUBE}.\"FrenchPromotionType\""
+        type: string
+      - name: englishpromotioncategory
+        sql: "{CUBE}.\"EnglishPromotionCategory\""
+        type: string
+      - name: spanishpromotioncategory
+        sql: "{CUBE}.\"SpanishPromotionCategory\""
+        type: string
+      - name: frenchpromotioncategory
+        sql: "{CUBE}.\"FrenchPromotionCategory\""
+        type: string
+      - name: startdate
+        sql: "{CUBE}.\"StartDate\""
+        type: time
+      - name: enddate
+        sql: "{CUBE}.\"EndDate\""
+        type: time

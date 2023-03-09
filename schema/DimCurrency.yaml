@@ -1,0 +1,25 @@
+cubes:
+  - name: DimCurrency
+    sql: SELECT * FROM dbo."DimCurrency"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins:
+      - name: FactInternetSales
+        sql: "{CUBE}.\"CurrencyKey\" = {FactInternetSales}.\"CurrencyKey\""
+        relationship: hasOne
+    measures:
+      - name: count
+        type: count
+        drillMembers: [currencyname]
+    dimensions:
+      - name: currencykey
+        sql: "{CUBE}.\"CurrencyKey\""
+        type: number
+        primaryKey: true
+      - name: currencyalternatekey
+        sql: "{CUBE}.\"CurrencyAlternateKey\""
+        type: string
+      - name: currencyname
+        sql: "{CUBE}.\"CurrencyName\""
+        type: string
