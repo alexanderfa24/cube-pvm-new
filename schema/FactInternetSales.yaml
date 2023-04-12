@@ -1,7 +1,39 @@
 cubes:
   - name: FactInternetSales
     sql: SELECT * FROM dbo."FactInternetSales"
+    # preAggregations:
+    #   - name: test
+    #     measures:
+    #       - FactInternetSales.sales_amount
+    #     timeDimension: FactInternetSales.order_date
+    #     granularity: year
     measures:
+
+      - name: sales_amount_last_year
+        sql: '{CUBE}."SalesAmount"'
+        type: sum
+        rolling_window:
+          trailing: 1 year
+          offset: start
+
+      - name: order_quantity_last_year
+        sql: '{CUBE}."OrderQuantity"'
+        type: sum
+        rolling_window:
+          trailing: 1 year
+          offset: start
+
+      - name: average_unit_price
+        sql: '{CUBE}."SalesAmount" / {CUBE}."OrderQuantity"'
+        type: avg
+
+      - name: average_unit_price_last_year
+        sql: '{CUBE}."SalesAmount" / {CUBE}."OrderQuantity"'
+        type: avg
+        rolling_window:
+          trailing: 1 year
+          offset: start
+
       - name: count
         type: count
         drillMembers:
@@ -16,7 +48,7 @@ cubes:
         type: number
       - name: order_quantity
         sql: '{CUBE}."OrderQuantity"'
-        type: number
+        type: sum
       - name: unit_price
         sql: '{CUBE}."UnitPrice"'
         type: number
