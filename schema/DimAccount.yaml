@@ -1,0 +1,38 @@
+cubes:
+  - name: DimAccount
+    sql: SELECT * FROM dbo."DimAccount"
+      # preAggregations:
+      # Pre-Aggregations definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    joins: []
+    measures:
+      - name: count
+        type: count
+        drillMembers: []
+    dimensions:
+      - name: account_key
+        sql: "{CUBE}.\"AccountKey\""
+        type: number
+        primaryKey: true
+      - name: parent_account_key
+        sql: "{CUBE}.\"ParentAccountKey\""
+        type: number
+        shown: true
+      - name: accountdescription
+        sql: "{CUBE}.\"AccountDescription\""
+        type: string
+      - name: accounttype
+        sql: "{CUBE}.\"AccountType\""
+        type: string
+      - name: operator
+        sql: "{CUBE}.\"Operator\""
+        type: string
+      - name: custommembers
+        sql: "{CUBE}.\"CustomMembers\""
+        type: string
+      - name: valuetype
+        sql: "{CUBE}.\"ValueType\""
+        type: string
+      - name: custommemberoptions
+        sql: "{CUBE}.\"CustomMemberOptions\""
+        type: string

@@ -4,7 +4,10 @@ cubes:
       # preAggregations:
       # Pre-Aggregations definitions go here
       # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
-    joins: []
+    joins:
+      - name: FactInternetSales
+        sql: "{CUBE}.\"CustomerKey\" = {FactInternetSales}.\"CustomerKey\""
+        relationship: has_many
     measures:
       - name: count
         type: count

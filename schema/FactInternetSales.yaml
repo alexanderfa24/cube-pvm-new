@@ -1,91 +1,90 @@
 cubes:
   - name: FactInternetSales
     sql: SELECT * FROM dbo."FactInternetSales"
-      # preAggregations:
-      # Pre-Aggregations definitions go here
-      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
-    joins: []
     measures:
       - name: count
         type: count
-        drillMembers: [orderdate, duedate, shipdate]
-      - name: salesorderlinenumber
-        sql: "{CUBE}.\"SalesOrderLineNumber\""
-        type: sum
-      - name: revisionnumber
-        sql: "{CUBE}.\"RevisionNumber\""
-        type: sum
-      - name: orderquantity
-        sql: "{CUBE}.\"OrderQuantity\""
-        type: sum
-      - name: unitprice
-        sql: "{CUBE}.\"UnitPrice\""
+        drillMembers:
+          - order_date
+          - due_date
+          - ship_date
+      - name: sales_order_line_number
+        sql: '{CUBE}."SalesOrderLineNumber"'
         type: number
-      - name: extendedamount
-        sql: "{CUBE}.\"ExtendedAmount\""
+      - name: revision_number
+        sql: '{CUBE}."RevisionNumber"'
+        type: number
+      - name: order_quantity
+        sql: '{CUBE}."OrderQuantity"'
+        type: number
+      - name: unit_price
+        sql: '{CUBE}."UnitPrice"'
+        type: number
+      - name: extended_amount
+        sql: '{CUBE}."ExtendedAmount"'
         type: number
       - name: unitpricediscountpct
-        sql: "{CUBE}.\"UnitPriceDiscountPct\""
+        sql: '{CUBE}."UnitPriceDiscountPct"'
         type: number
-      - name: discountamount
-        sql: "{CUBE}.\"DiscountAmount\""
+      - name: discount_amount
+        sql: '{CUBE}."DiscountAmount"'
         type: number
-      - name: productstandardcost
-        sql: "{CUBE}.\"ProductStandardCost\""
+      - name: product_standard_cost
+        sql: '{CUBE}."ProductStandardCost"'
         type: number
-      - name: totalproductcost
-        sql: "{CUBE}.\"TotalProductCost\""
+      - name: total_product_cost
+        sql: '{CUBE}."TotalProductCost"'
         type: number
-      - name: salesamount
-        sql: "{CUBE}.\"SalesAmount\""
-        type: number
-      - name: taxamt
-        sql: "{CUBE}.\"TaxAmt\""
+      - name: sales_amount
+        sql: '{CUBE}."SalesAmount"'
+        type: sum
+      - name: tax_amt
+        sql: '{CUBE}."TaxAmt"'
         type: number
       - name: freight
-        sql: "{CUBE}.\"Freight\""
+        sql: '{CUBE}."Freight"'
         type: number
     dimensions:
-      - name: productkey
-        sql: "{CUBE}.\"ProductKey\""
+      - name: product_key
+        sql: '{CUBE}."ProductKey"'
         type: number
-      - name: orderdatekey
-        sql: "{CUBE}.\"OrderDateKey\""
+      - name: order_date_key
+        sql: '{CUBE}."OrderDateKey"'
         type: number
-      - name: duedatekey
-        sql: "{CUBE}.\"DueDateKey\""
+      - name: due_date_key
+        sql: '{CUBE}."DueDateKey"'
         type: number
-      - name: shipdatekey
-        sql: "{CUBE}.\"ShipDateKey\""
+      - name: shipdate_key
+        sql: '{CUBE}."ShipDateKey"'
         type: number
-      - name: customerkey
-        sql: "{CUBE}.\"CustomerKey\""
+      - name: customer_key
+        sql: '{CUBE}."CustomerKey"'
         type: number
-      - name: promotionkey
-        sql: "{CUBE}.\"PromotionKey\""
+      - name: promotion_key
+        sql: '{CUBE}."PromotionKey"'
         type: number
-      - name: currencykey
-        sql: "{CUBE}.\"CurrencyKey\""
+      - name: currency_key
+        sql: '{CUBE}."CurrencyKey"'
         type: number
-      - name: salesterritorykey
-        sql: "{CUBE}.\"SalesTerritoryKey\""
+      - name: sales_territory_key
+        sql: '{CUBE}."SalesTerritoryKey"'
         type: number
-      - name: salesordernumber
-        sql: "{CUBE}.\"SalesOrderNumber\""
+      - name: sales_order_number
+        sql: '{CUBE}."SalesOrderNumber"'
         type: string
         primaryKey: true
-      - name: carriertrackingnumber
-        sql: "{CUBE}.\"CarrierTrackingNumber\""
+      - name: carrier_tracking_number
+        sql: '{CUBE}."CarrierTrackingNumber"'
         type: string
-      - name: customerponumber
-        sql: "{CUBE}.\"CustomerPONumber\""
+      - name: customer_po_number
+        sql: '{CUBE}."CustomerPONumber"'
         type: string
-      - name: orderdate
-        sql: "{CUBE}.\"OrderDate\""
+      - name: order_date
+        sql: '{CUBE}."OrderDate"'
         type: time
-      - name: duedate
-        sql: "{CUBE}.\"DueDate\""
+      - name: due_date
+        sql: '{CUBE}."DueDate"'
         type: time
-      - name: shipdate
-        sql: "{CUBE}.\"ShipDate\""
+      - name: ship_date
+        sql: '{CUBE}."ShipDate"'
         type: time
