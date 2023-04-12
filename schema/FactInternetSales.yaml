@@ -1,91 +1,97 @@
 cubes:
   - name: FactInternetSales
     sql: SELECT * FROM dbo."FactInternetSales"
-      # preAggregations:
-      # Pre-Aggregations definitions go here
-      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+    preAggregations:
+      - name: test
+        measures:
+          - FactInternetSales.sales_amount
+        timeDimension: FactInternetSales.ship_date
+        granularity: year
     joins: []
     measures:
       - name: count
         type: count
-        drillMembers: [orderdate, duedate, shipdate]
+        drillMembers:
+          - orderdate
+          - duedate
+          - ship_date
       - name: salesorderlinenumber
-        sql: "{CUBE}.\"SalesOrderLineNumber\""
+        sql: '{CUBE}."SalesOrderLineNumber"'
         type: sum
       - name: revisionnumber
-        sql: "{CUBE}.\"RevisionNumber\""
+        sql: '{CUBE}."RevisionNumber"'
         type: sum
       - name: orderquantity
-        sql: "{CUBE}.\"OrderQuantity\""
+        sql: '{CUBE}."OrderQuantity"'
         type: sum
       - name: unitprice
-        sql: "{CUBE}.\"UnitPrice\""
+        sql: '{CUBE}."UnitPrice"'
         type: number
       - name: extendedamount
-        sql: "{CUBE}.\"ExtendedAmount\""
+        sql: '{CUBE}."ExtendedAmount"'
         type: number
       - name: unitpricediscountpct
-        sql: "{CUBE}.\"UnitPriceDiscountPct\""
+        sql: '{CUBE}."UnitPriceDiscountPct"'
         type: number
       - name: discountamount
-        sql: "{CUBE}.\"DiscountAmount\""
+        sql: '{CUBE}."DiscountAmount"'
         type: number
       - name: productstandardcost
-        sql: "{CUBE}.\"ProductStandardCost\""
+        sql: '{CUBE}."ProductStandardCost"'
         type: number
       - name: totalproductcost
-        sql: "{CUBE}.\"TotalProductCost\""
+        sql: '{CUBE}."TotalProductCost"'
         type: number
-      - name: salesamount
-        sql: "{CUBE}.\"SalesAmount\""
-        type: number
+      - name: sales_amount
+        sql: '{CUBE}."SalesAmount"'
+        type: sum
       - name: taxamt
-        sql: "{CUBE}.\"TaxAmt\""
+        sql: '{CUBE}."TaxAmt"'
         type: number
       - name: freight
-        sql: "{CUBE}.\"Freight\""
+        sql: '{CUBE}."Freight"'
         type: number
     dimensions:
       - name: productkey
-        sql: "{CUBE}.\"ProductKey\""
+        sql: '{CUBE}."ProductKey"'
         type: number
       - name: orderdatekey
-        sql: "{CUBE}.\"OrderDateKey\""
+        sql: '{CUBE}."OrderDateKey"'
         type: number
       - name: duedatekey
-        sql: "{CUBE}.\"DueDateKey\""
+        sql: '{CUBE}."DueDateKey"'
         type: number
       - name: shipdatekey
-        sql: "{CUBE}.\"ShipDateKey\""
+        sql: '{CUBE}."ShipDateKey"'
         type: number
       - name: customerkey
-        sql: "{CUBE}.\"CustomerKey\""
+        sql: '{CUBE}."CustomerKey"'
         type: number
       - name: promotionkey
-        sql: "{CUBE}.\"PromotionKey\""
+        sql: '{CUBE}."PromotionKey"'
         type: number
       - name: currencykey
-        sql: "{CUBE}.\"CurrencyKey\""
+        sql: '{CUBE}."CurrencyKey"'
         type: number
       - name: salesterritorykey
-        sql: "{CUBE}.\"SalesTerritoryKey\""
+        sql: '{CUBE}."SalesTerritoryKey"'
         type: number
       - name: salesordernumber
-        sql: "{CUBE}.\"SalesOrderNumber\""
+        sql: '{CUBE}."SalesOrderNumber"'
         type: string
         primaryKey: true
       - name: carriertrackingnumber
-        sql: "{CUBE}.\"CarrierTrackingNumber\""
+        sql: '{CUBE}."CarrierTrackingNumber"'
         type: string
       - name: customerponumber
-        sql: "{CUBE}.\"CustomerPONumber\""
+        sql: '{CUBE}."CustomerPONumber"'
         type: string
       - name: orderdate
-        sql: "{CUBE}.\"OrderDate\""
+        sql: '{CUBE}."OrderDate"'
         type: time
       - name: duedate
-        sql: "{CUBE}.\"DueDate\""
+        sql: '{CUBE}."DueDate"'
         type: time
-      - name: shipdate
-        sql: "{CUBE}.\"ShipDate\""
+      - name: ship_date
+        sql: '{CUBE}."ShipDate"'
         type: time
