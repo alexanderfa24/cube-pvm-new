@@ -2,9 +2,9 @@ cubes:
   - name: FactInternetSales
     sql: SELECT * FROM dbo."FactInternetSales"
     preAggregations:
-      - name: test
+      - name: test2
         measures:
-          - FactInternetSales.sales_amount
+          - FactInternetSales.Total_Sales_Amount
         timeDimension: FactInternetSales.ship_date
         granularity: year
     joins: []
@@ -15,6 +15,9 @@ cubes:
           - orderdate
           - duedate
           - ship_date
+      - name: Total_Sales_Amount
+        sql: CAST({CUBE}."SalesAmount" AS numeric)
+        type: sum
       - name: salesorderlinenumber
         sql: '{CUBE}."SalesOrderLineNumber"'
         type: sum
@@ -42,9 +45,7 @@ cubes:
       - name: totalproductcost
         sql: '{CUBE}."TotalProductCost"'
         type: number
-      - name: sales_amount
-        sql: '{CUBE}."SalesAmount"'
-        type: sum
+
       - name: taxamt
         sql: '{CUBE}."TaxAmt"'
         type: number
